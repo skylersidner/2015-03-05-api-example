@@ -1,5 +1,6 @@
 class Student
-  attr_reader :id, :age, :name, :github
+  attr_reader :id
+  attr_accessor :age, :name, :github
   
   def initialize(options)
     @id = options["id"]
@@ -40,12 +41,28 @@ class Student
     self.new(result)
   end
   
-  def self.save(field, value, id)
-    if value.is_a?(Integer)
-      DATABASE.execute("UPDATE students SET #{field} = #{value} WHERE id = #{id}")
-    else
-      DATABASE.execute("UPDATE students SET #{field} = '#{value}' WHERE id = #{id}")
+  def save
+    attributes = []
+    
+    instance_variables.each do |i|
+      attributes << i.to_s.delete("@")
     end
+
+    query_components_array = []
+
+    attributes.each do |a|
+      value = self.send(a)
+  
+      if value.is_a?(Integer)
+        query_components_array << "#{a} = #{value}"
+      else
+        query_components_array << "#{a} = '#{value}'"
+      end
+    end
+
+    query_string = query_components_array.join(", ")
+    
+    DATABASE.execute("UPDATE students SET #{query_string} WHERE id = #{id}")
   end
   
   def insert

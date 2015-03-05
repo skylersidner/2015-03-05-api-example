@@ -27,10 +27,11 @@ get "/students/:id/find" do
 end
 
 get "/students/:id/save" do
-  Student.save("age", 2000, params[:id])
-  Student.save("name", "Bob", params[:id])
-  Student.save("github", "skylersidner", params[:id])
   student = Student.find(params[:id])
+  student.age = 3500
+  student.name = "Sue"
+  student.github = "betsysue50"
+  student.save
   student_hash = student.to_hash
   student_hash.to_json
 end
