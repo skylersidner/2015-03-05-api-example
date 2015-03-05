@@ -40,7 +40,7 @@ class Student
     self.new(result)
   end
   
-  def save(field, value, id)
+  def self.save(field, value, id)
     if value.is_a?(Integer)
       DATABASE.execute("UPDATE students SET #{field} = #{value} WHERE id = #{id}")
     else
