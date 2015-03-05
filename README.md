@@ -1,4 +1,4 @@
-## Afternoon Assignment:
+## Morning Assignment:
 
 - Add a route that modifies a student record. There's no need for a page that shows a form for editing. We're just working with request paths directly. (Use 'get' instead of 'post' to make it easier to check that things work. Once it's working, change it to 'post'.)
 - Add routes for creating and deleting students, too.
@@ -7,7 +7,7 @@
 
 From the console, you should be able to use `XMLHttpRequest` to make requests to these paths and parse the responses as JSON, just like we went over together.
 
-### DOM Exercises
+### DOM Exercises, for after.
 
 - Add links to various routes on the homepage.
 - Clicking a link should create an `XMLHttpRequest` to that path.
