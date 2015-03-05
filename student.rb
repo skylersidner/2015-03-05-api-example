@@ -40,6 +40,12 @@ class Student
     self.new(result)
   end
   
+  def save
+    query_hash.each do |key, value|
+      DATABASE.execute("UPDATE students SET #{key} = #{value} WHERE id = #{params[:id]}")
+    end
+  end
+  
   # Returns the object as a Hash.
   def to_hash
     {
