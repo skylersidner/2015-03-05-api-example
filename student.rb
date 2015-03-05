@@ -49,9 +49,14 @@ class Student
   end
   
   def insert
-    DATABASE.execute("INSERT INTO students (name, age, github), VALUES ('#{@name}', #{@age}, '#{@github}')") 
+    DATABASE.execute("INSERT INTO students (name, age, github) VALUES ('#{@name}', #{@age}, '#{@github}')") 
     @id = DATABASE.last_insert_row_id
   end
+  
+  def self.delete(id)
+    DATABASE.execute("DELETE FROM students WHERE id = #{id}")  
+  end
+  
   # Returns the object as a Hash.
   def to_hash
     {

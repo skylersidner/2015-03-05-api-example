@@ -19,7 +19,7 @@ get "/students" do
   students_hash.to_json
 end
 
-get "/students/:id" do
+get "/students/:id/find" do
   student = Student.find(params[:id])
 
   student_hash = student.to_hash
@@ -35,14 +35,13 @@ get "/students/:id/save" do
 
 end
 
-get "students/create" do
+get "/students/create" do
   student = Student.new("name" => "John Doe", "age" => 4001, "github" => "johndoe1")
-  
+  student.insert
 end
 
-get "students/delete" do
-  student = Student.find(params[:id])
-  
+get "/students/delete" do
+  Student.delete(17)
 end
 
 # Afternoon Assignment:
