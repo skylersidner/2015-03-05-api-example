@@ -14,7 +14,7 @@ class Student
   end
   
   def ultra_wise?
-    age >= 1000
+    age >= 2000
   end
   
   def github_link
@@ -81,6 +81,12 @@ class Student
       name: name,
       age: age,
       github: github
+    }
+  end
+  
+  def wise_hash
+    {
+      wise: self.ultra_wise?
     }
   end
 end

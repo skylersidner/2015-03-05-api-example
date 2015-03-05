@@ -6,9 +6,9 @@ function createObject(id) {
   JSON.parse(js_req.response)
 }
 
-function saveObject() {
+function saveObject(id) {
   var js_req = new XMLHttpRequest;
-  js_req.open("get", "http://localhost:4567/students/15/save");
+  js_req.open("get", "http://localhost:4567/students/" + id + "/save");
   js_req.send();
   
   // Request was sent.
@@ -28,4 +28,17 @@ function saveObject() {
   }, false);
 }
 
+function ultraWise(id) {
+  var js_req = new XMLHttpRequest;
+  js_req.open("get", "http://localhost:4567/students/" + id + "/wise");
+  js_req.send();
+  js_req.addEventListener("load", function(){
+    r = JSON.parse(js_req.response);
+    if (r["wise"] === true) {
+      alert("Yay, they're wise!");
+    } else {
+      alert("Sorry, you're not wise!");   
+    };
+  }, false);
+} 
 
