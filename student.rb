@@ -40,12 +40,18 @@ class Student
     self.new(result)
   end
   
-  def save
-    query_hash.each do |key, value|
-      DATABASE.execute("UPDATE students SET #{key} = #{value} WHERE id = #{params[:id]}")
+  def save(field, value, id)
+    if value.is_a?(Integer)
+      DATABASE.execute("UPDATE students SET #{field} = #{value} WHERE id = #{id}")
+    else
+      DATABASE.execute("UPDATE students SET #{field} = '#{value}' WHERE id = #{id}")
     end
   end
   
+  def insert
+    DATABASE.execute("INSERT INTO students (name, age, github), VALUES ('#{@name}', #{@age}, '#{@github}')") 
+    @id = DATABASE.last_insert_row_id
+  end
   # Returns the object as a Hash.
   def to_hash
     {
