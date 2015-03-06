@@ -6,9 +6,9 @@ function createObject(id) {
   JSON.parse(js_req.response)
 }
 
-function saveObject(id) {
+function saveObject(id, name, age, github) {
   var js_req = new XMLHttpRequest;
-  js_req.open("get", "http://localhost:4567/students/" + id + "/save");
+  js_req.open("get", "http://localhost:4567/students/" + id + "/save/" + name + "/" + age + "/" + github);
   js_req.send();
   
   // Request was sent.
@@ -24,7 +24,7 @@ function saveObject(id) {
   
   js_req.addEventListener("load", function(){
     r = JSON.parse(js_req.response);
-    alert("Information updated for " + r.name + "! Age is now " + r.age + ".");
+    alert("Information updated for student number" + r.id + "! Name: " + r.name + ", Age: " + r.age + ", Github: " + github + ".");
   }, false);
 }
 

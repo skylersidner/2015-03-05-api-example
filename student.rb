@@ -83,10 +83,11 @@ class Student
       github: github
     }
   end
-  
+
   def wise_hash
     {
       wise: self.ultra_wise?
     }
   end
+
 end
