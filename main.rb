@@ -44,7 +44,10 @@ get "/students/create/:name/:age/:github" do
 end
 
 get "/students/:id/delete" do
+  student = Student.find(params[:id])
   Student.delete(params[:id])
+  student_hash = student.to_hash
+  student_hash.to_json
 end
 
 get "/students/:id/wise" do

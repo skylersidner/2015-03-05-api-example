@@ -5,7 +5,7 @@ function createObject(name, age, github) {
   js_req.send()
   js_req.addEventListener("load", function(){
     r = JSON.parse(js_req.response);
-    alert("Information updated for student number" + r.id + "! Name: " + r.name + ", Age: " + r.age + ", Github: " + github + ".");
+    alert("Record created for student # " + r.id + "! Name: " + r.name + ", Age: " + r.age + ", Github: " + github + ".");
   }, false);
 }
 
@@ -27,7 +27,17 @@ function saveObject(id, name, age, github) {
   
   js_req.addEventListener("load", function(){
     r = JSON.parse(js_req.response);
-    alert("Information updated for student number" + r.id + "! Name: " + r.name + ", Age: " + r.age + ", Github: " + github + ".");
+    alert("Information updated for student # " + r.id + "! Name: " + r.name + ", Age: " + r.age + ", Github: " + github + ".");
+  }, false);
+}
+
+function deleteObject(id) {
+  var js_req = new XMLHttpRequest;
+  js_req.open("get", "http://localhost:4567/students/" + id + "/delete");
+  js_req.send()
+  js_req.addEventListener("load", function(){
+    r = JSON.parse(js_req.response);
+    alert("Record deleted for student # " + r.id + "!");
   }, false);
 }
 
@@ -43,5 +53,5 @@ function ultraWise(id) {
       alert("Sorry, you're not wise!");   
     };
   }, false);
-} 
+}
 
