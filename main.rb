@@ -36,13 +36,15 @@ get "/students/:id/save/:name/:age/:github" do
   student_hash.to_json
 end
 
-get "/students/create" do
-  student = Student.new("name" => "John Doe", "age" => 4001, "github" => "johndoe1")
+get "/students/create/:name/:age/:github" do
+  student = Student.new("name" => "#{params[:name]}", "age" => params[:age], "github" => "#{params[:github]}")
   student.insert
+  student_hash = student.to_hash
+  student_hash.to_json
 end
 
-get "/students/delete" do
-  Student.delete(17)
+get "/students/:id/delete" do
+  Student.delete(params[:id])
 end
 
 get "/students/:id/wise" do

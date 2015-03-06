@@ -1,9 +1,12 @@
 
-function createObject(id) {
+function createObject(name, age, github) {
   var js_req = new XMLHttpRequest
-  js_req.open("get", "http://localhost:4567/students/" + id)
+  js_req.open("get", "http://localhost:4567/students/create/" + name + "/" + age + "/" + github)
   js_req.send()
-  JSON.parse(js_req.response)
+  js_req.addEventListener("load", function(){
+    r = JSON.parse(js_req.response);
+    alert("Information updated for student number" + r.id + "! Name: " + r.name + ", Age: " + r.age + ", Github: " + github + ".");
+  }, false);
 }
 
 function saveObject(id, name, age, github) {
